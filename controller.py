@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import time
-import io
 import paho.mqtt.client as mqtt
 import json
 import logging
@@ -88,7 +87,7 @@ def manual_callback(client, userdata, msg):
         try:
             data = json.loads(msg.payload.decode("utf-8"))
             seconds = time.time() + pause_time * 20
-            
+
             position = data['value']
             rooms = data['rooms']
 
