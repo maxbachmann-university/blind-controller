@@ -41,7 +41,7 @@ class Matter(object):
         self.position = event.kwargs.get('position', 0)
         self.time = time.time() + self.PAUSE_TIME * 60
         print('position: ', self.position)
-    
+
     # check wether it should reset to automatic mode
     def compare_time(self, event):
         print('time left: ', (self.time - time.time()))
@@ -71,7 +71,7 @@ transitions = [
         'dest': '=',
         'before':[
             'set_brightness',
-            'set_automatic_position'] 
+            'set_automatic_position']
     },
     {
         'trigger': 'change_brightness',
@@ -91,7 +91,7 @@ transitions = [
         'dest': 'manual',
         'before':'set_position'
     },
-    { 
+    {
         'trigger': 'check_auto_timeout',
         'source': 'manual',
         'dest': 'automatic',
@@ -185,7 +185,7 @@ def send_position(msg):
 if __name__ == "__main__":
     # load config parameters from config file
     stream = open("config.yml", "r")
-    config = yaml.load(stream)
+    config = yaml.safe_load(stream)
 
     mqtt_client.on_connect = on_connect
 
